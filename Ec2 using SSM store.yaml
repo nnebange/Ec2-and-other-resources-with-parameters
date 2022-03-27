@@ -1,0 +1,18 @@
+---
+Parameters:
+  InstanceType:
+    Description: Windows Ec2 Instance
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: InstanceType
+  ImageId:
+    Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
+    Default: /aws/service/ami-windows-latest/EC2LaunchV2-Windows_Server-2016-English-Core-Base
+Resources:
+  NebaEC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: !Ref InstanceType 
+      ImageId: !Ref ImageId
+      Tags:
+        - Key: Name
+          Value: Windows Instance
